@@ -12,17 +12,10 @@ const getAllOrders = async () => {
 const getOrderById = async (order_id) => {
   const price = await getTotal(order_id);
   console.log(price);
-  const t = await prisma.orders.update({
+  return await prisma.orders.update({
     where: { order_id: parseInt(order_id) },
     data: {
       total_price: price,
-    }
-  });
-
-  return prisma.orders.findUnique({ 
-    where: { order_id: parseInt(order_id) },
-    include: {
-      orderItems: true
     }
   });
 };

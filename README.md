@@ -54,7 +54,9 @@ Submitted by: **Elizabeth Johnson**
 
 ### Walkthrough Video
 
-![Walkthrough]()
+![Walkthrough 1](student-store-ui/src/assets/Unit4Vid1.gif)
+![Walkthrough 2](student-store-ui/src/assets/Unit4Vid2.gif)
+![Walkthrough 3](student-store-ui/src/assets/Unit4Vid3.gif)
 
 ### Reflection
 
