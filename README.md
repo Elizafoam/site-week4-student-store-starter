@@ -57,6 +57,10 @@ Submitted by: **Elizabeth Johnson**
 ![Walkthrough 1](student-store-ui/src/assets/Unit4Vid1.gif)
 ![Walkthrough 2](student-store-ui/src/assets/Unit4Vid2.gif)
 ![Walkthrough 3](student-store-ui/src/assets/Unit4Vid3.gif)
+![Walkthrough 4](student-store-ui/src/assets/Unit4Vid4.gif)
+![Walkthrough 5](student-store-ui/src/assets/Unit4Vid5.gif)
+![Walkthrough 6](student-store-ui/src/assets/Unit4Vid6.gif)
+![Walkthrough 7](student-store-ui/src/assets/Unit4Vid7.gif)
 
 ### Reflection
 
