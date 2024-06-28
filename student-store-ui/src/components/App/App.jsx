@@ -23,6 +23,7 @@ function App() {
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(null);
 
+
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
 
@@ -36,8 +37,71 @@ function App() {
     setSearchInputValue(event.target.value);
   };
 
-  const handleOnCheckout = async () => {
+
+  const handleOnCheckout = async (params = {}) => {
+    setIsCheckingOut(true);
+    console.log(userInfo.name);
+    try {
+      let orderData = {
+        customer_id: parseInt(userInfo.name),
+        total_price: 1.2,
+        status: "checking"
+      }
+      const response = await axios.post("http://localhost:3000/orders", orderData);
+      console.log("Order", response.data);
+      const items = await createOrderItems(response.data.order_id);
+      const price = await updatePrice({}, response.data.order_id);
+      setCart({})
+    }
+    catch (error){
+      console.log("Error fetching products: ", error);
+    }
   }
+
+  const createOrderItems = (order_id) => {
+    console.log(cart);
+    Object.entries(cart).forEach(async (key,val) => {
+      try {
+        let item = {
+          product_id: parseInt(key[0]),
+          quantity: key[1],
+          price: parseFloat(products[key[0]-1].price)
+        }
+  
+        const response = await axios.post(`http://localhost:3000/orders/${order_id}/items`, item);
+        console.log(response.data);
+      }
+      catch (error){
+        console.log("Error creating order items: ", error);
+      }
+    })
+  }
+
+  const updatePrice = async (params = {}, id) => {
+    try {
+      const response = await axios.get(`http://localhost:3000/orders/${id}`, {params});
+      console.log(response.data);
+    }
+    catch (error){
+      console.log("Error updating price: ", error);
+    }
+  }
+
+  const fetchProducts = async (params = {}) => {
+    try {
+      const response = await axios.get("http://localhost:3000/products", {params});
+      console.log("Fetched products", response.data);
+      setProducts(Array.isArray(response.data) ? response.data : []);
+    }
+    catch (error){
+      console.log("Error creating order: ", error);
+      setProducts([]);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
 
   return (
